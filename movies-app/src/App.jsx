@@ -1,5 +1,4 @@
-import Card from "./components/card";
-import Movies from "./FetchMovies";
+import MovieList from "./MovieList";
 
 function App() {
   return (
@@ -21,7 +20,7 @@ function App() {
       </header>
 
       <main className="flex container mx-auto px-4 py-10 justify-center">
-          <Movies></Movies>
+          <MovieList></MovieList>
       </main>
 
       <footer className="mt-auto bg-zinc-900">
