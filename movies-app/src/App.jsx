@@ -2,7 +2,7 @@ import MovieList from "./MovieList";
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-black"> 
+    <div className="min-h-screen flex flex-col bg-black font-rubik"> 
       <header className="bg-zinc-900 flex gap-3 flex-row items-center justify-center p-2">
         <h1 className="text-white cursor-pointer p-2">Logo</h1>
         <form id="searchBar" className="">
@@ -12,14 +12,14 @@ function App() {
             placeholder=""
             autoComplete="off"
             className="rounded-md border border-slate-200 bg-slate-50 shadow-sm outline-none transition
-                     focus:border-black focus:ring-1 focus:ring-black p-0.5"
+                     focus:border-green-800 focus:ring-1 focus:ring-green-800 p-0.5"
           >
           </input>
           <button type="submit" hidden></button>
         </form>
       </header>
 
-      <main className="flex container mx-auto px-4 py-10 justify-center">
+      <main className="w-[80%] flex container mx-auto px-4 py-10 justify-center">
           <MovieList></MovieList>
       </main>
 

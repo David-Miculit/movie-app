@@ -6,7 +6,7 @@ export default function MovieCard(movie) {
             alt={movie.title}
             className="h-48 object-cover rounded-lg"
           />
-          <h2 className="font-bold mt-2">{movie.title}</h2>
+          <h2 className="mt-2">{movie.title}</h2>
           <p>Genre: {movie.genre}</p>
           <p>Rating: {movie.rating}</p>
         </div>
