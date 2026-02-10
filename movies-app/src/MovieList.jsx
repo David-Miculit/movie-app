@@ -13,7 +13,7 @@ export default function MovieList() {
 
       const data = await response.json()
       if(data) {
-        console.log(data)
+        console.log(`Movie list data`, data)
         setMovies(data)
       }
     } catch (err) {
@@ -24,7 +24,7 @@ export default function MovieList() {
   useEffect(() => { fetchMovies() }, [])
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-5 gap-6">
       {movies.map(movie => MovieCard(movie))}
     </div>
   )
