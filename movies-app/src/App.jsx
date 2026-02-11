@@ -1,4 +1,4 @@
-import MovieList from "./MovieList";
+import MovieList from "./components/MoviesFetch";
 import MainHeader from "./components/MainHeader";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
       </section>
 
       <main className="relative bg-black">
-        <div className="w-[80%] container mx-auto">
+        <div className="w-[90%] container mx-auto">
           <MovieList />
         </div>
       </main>
