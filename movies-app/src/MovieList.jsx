@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import MovieCard from "./components/MovieCard";
+import { useRef } from "react";
 import Spinner from "./components/LoadingSpinner";
+import MoviesCarousel from "./components/MoviesCarousel";
 
 export default function MovieList() {
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const carouselRef = useRef(null)
 
   const fetchMovies = async() => {
     try {
@@ -41,10 +43,6 @@ export default function MovieList() {
       </div>
     )
   } else {
-    return (
-      <div className="grid grid-cols-5 gap-6">
-        {movies.map(movie => MovieCard(movie))}
-      </div>
-    )
+    return (MoviesCarousel(movies, carouselRef))
   }
 }
