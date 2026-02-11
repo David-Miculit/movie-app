@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRef } from "react";
-import Spinner from "./components/LoadingSpinner";
-import MoviesCarousel from "./components/MoviesCarousel";
+import Spinner from "./LoadingSpinner";
+import MoviesCarousel from "./MoviesCarousel";
 
 export default function MovieList() {
   const [movies, setMovies] = useState([])
@@ -43,6 +43,6 @@ export default function MovieList() {
       </div>
     )
   } else {
-    return (MoviesCarousel(movies, carouselRef))
-  }
+    return (<MoviesCarousel movies={movies} carouselRef={carouselRef}/>)
+    }
 }

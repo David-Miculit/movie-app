@@ -1,4 +1,4 @@
-import MovieList from "./MovieList";
+import MovieList from "./components/MoviesFetch";
 import MainHeader from "./components/MainHeader";
 
 function App() {
