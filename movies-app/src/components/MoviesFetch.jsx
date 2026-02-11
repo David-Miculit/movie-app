@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useRef } from "react";
 import Spinner from "./LoadingSpinner";
 import MoviesCarousel from "./MoviesCarousel";
+import { getFavorites, saveFavorites } from "../scripts/Favorites"
 
 export default function MovieList() {
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const carouselRef = useRef(null)
+  const [favorites, setFavorites] = useState(() => getFavorites())
 
   const fetchMovies = async() => {
     try {
@@ -30,6 +32,19 @@ export default function MovieList() {
     }
   }
 
+  const toggleFavorite = (movieId) => {
+    let updated;
+
+    if (favorites.includes(movieId)) {
+      updated = favorites.filter(id => id !== movieId)
+    } else {
+      updated = [...favorites, movieId]
+    }
+
+    setFavorites(updated)
+    saveFavorites(updated)
+  }
+  
   useEffect(() => { fetchMovies() }, [])
 
   if(isLoading) {
@@ -43,6 +58,6 @@ export default function MovieList() {
       </div>
     )
   } else {
-    return (<MoviesCarousel movies={movies} carouselRef={carouselRef}/>)
+    return (<MoviesCarousel movies={movies} favorites={favorites} toggleFavorite={toggleFavorite} carouselRef={carouselRef}/>)
     }
 }
