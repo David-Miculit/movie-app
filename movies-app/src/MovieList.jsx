@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import MovieCard from "./components/MovieCard";
+import Spinner from "./components/LoadingSpinner";
 
 export default function MovieList() {
   const [movies, setMovies] = useState([])
@@ -30,7 +31,7 @@ export default function MovieList() {
   useEffect(() => { fetchMovies() }, [])
 
   if(isLoading) {
-    return <div className="spinner flex justify-center p-9 text-white ">Loading...</div>;
+    return <Spinner></Spinner>;
   }
   
   if(movies.length == 0){
