@@ -3,6 +3,7 @@ import MovieCard from "./components/MovieCard";
 
 export default function MovieList() {
   const [movies, setMovies] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   const fetchMovies = async() => {
     try {
@@ -12,20 +13,37 @@ export default function MovieList() {
       }
 
       const data = await response.json()
-      if(data) {
+
+      if(data && data.length != 0) {
         console.log(`Movie list data`, data)
         setMovies(data)
+      } else {
+        console.log("No movie data")
       }
     } catch (err) {
       console.log(err)
+    } finally {
+      setIsLoading(false)
     }
   }
 
   useEffect(() => { fetchMovies() }, [])
 
-  return (
-    <div className="grid grid-cols-5 gap-6">
-      {movies.map(movie => MovieCard(movie))}
-    </div>
-  )
+  if(isLoading) {
+    return <div className="spinner flex justify-center p-9 text-white ">Loading...</div>;
+  }
+  
+  if(movies.length == 0){
+    return (
+      <div className="flex justify-center p-9">
+        <p className="text-white">No movies to show. Try again later</p>
+      </div>
+    )
+  } else {
+    return (
+      <div className="grid grid-cols-5 gap-6">
+        {movies.map(movie => MovieCard(movie))}
+      </div>
+    )
+  }
 }
