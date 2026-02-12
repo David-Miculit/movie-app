@@ -44,7 +44,7 @@ function App() {
       </section>
 
       <main className="relative bg-black">
-        <div className="w-[90%] container mx-auto flex flex-col gap-12">
+        <div className="w-[90%] container mx-auto flex flex-col gap-10">
           <MovieList movies={movies} category={'fantasy'}/>
           <MovieList movies={movies} category={'action'}/>
           <MovieList movies={movies} category={'drama'}/>

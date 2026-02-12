@@ -14,10 +14,11 @@ const scrollPrev = (carouselRef) => {
 }
 
 export default function MoviesCarousel({movies, category, favorites, toggleFavorite, carouselRef}) {
+  const shownCategory = category.charAt(0).toUpperCase() + category.slice(1)
   return (
-    <div className="mb-10">
-      <h2 className="text-white text-2xl font-medium mb-4 px-2">
-        {category}
+    <div>
+      <h2 className="text-white text-2xl font-medium mb-2 px-2">
+        {shownCategory}
       </h2>
 
       <div className="relative">
