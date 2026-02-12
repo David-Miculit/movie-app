@@ -21,7 +21,7 @@ export default function MovieList({movies, category}) {
   }
 
   const categoryList = movies.filter(movie => movie.genre === category)
-  console.log(categoryList)
+  console.log(`${category} media: \n`, categoryList)
 
   if(categoryList.length == 0){
     return (

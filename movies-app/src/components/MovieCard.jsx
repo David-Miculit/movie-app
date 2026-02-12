@@ -9,7 +9,7 @@ export function MovieCard({movie, favorites, toggleFavorite}) {
                 alt={movie.title}
                 className="h-44 border border-zinc-800 w-full object-cover rounded-lg"
             />
-            <h2 className="mt-2 font-medium text-xl">{movie.title}</h2>
+            <h3 className="mt-2 font-medium text-xl">{movie.title}</h3>
             <div className="container flex flex-row gap-2">
                 <button onClick={() => toggleFavorite(movie.id)} className="text-green-800 p-2 w-6 h-6 flex items-center justify-center rounded-full">
                     {star}
