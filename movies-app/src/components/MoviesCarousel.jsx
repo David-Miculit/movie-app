@@ -13,23 +13,31 @@ const scrollPrev = (carouselRef) => {
   }
 }
 
-export default function MoviesCarousel({movies, favorites, toggleFavorite, carouselRef}) {
+export default function MoviesCarousel({movies, category, favorites, toggleFavorite, carouselRef}) {
+  const shownCategory = category ? category.charAt(0).toUpperCase() + category.slice(1): ''
+
   return (
-    <div className="relative">
-      <div ref={carouselRef} className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
-        {movies.map(movie => (<MovieCard key={movie.id} movie={movie} favorites={favorites} toggleFavorite={toggleFavorite}/>))}
-      </div>
+    <div>
+      <h2 className="text-white text-2xl font-medium mb-2 px-2">
+        {shownCategory}
+      </h2>
 
-      <button onClick={() => scrollPrev(carouselRef)} className="absolute left-5 top-24 -translate-y-1/2 z-10 bg-zinc-900 text-zinc-400 p-2 w-8 h-8 flex items-center justify-center rounded-full">
-      {'<'}
-      </button>
+      <div className="relative">
+        <div ref={carouselRef} className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
+          {movies.map(movie => (<MovieCard key={movie.id} movie={movie} favorites={favorites} toggleFavorite={toggleFavorite}/>))}
+        </div>
 
-      <button onClick={() => scrollNext(carouselRef)} className="absolute right-5 top-24 -translate-y-1/2 z-10 bg-zinc-900 text-zinc-400 p-2 w-8 h-8 flex items-center justify-center rounded-full">
-      {'>'}
-      </button>
+        <button onClick={() => scrollPrev(carouselRef)} className="absolute left-5 top-24 -translate-y-1/2 z-10 bg-zinc-900 text-zinc-400 p-2 w-8 h-8 flex items-center justify-center rounded-full">
+        {'<'}
+        </button>
 
-      <div className="pointer-events-none absolute top-0 right-0 h-full w-40 bg-gradient-to-r from-transparent to-black/100" />
-      <div className="pointer-events-none absolute top-0 left-0 h-full w-3 bg-gradient-to-l from-transparent to-black/100" />
-    </div>    
+        <button onClick={() => scrollNext(carouselRef)} className="absolute right-5 top-24 -translate-y-1/2 z-10 bg-zinc-900 text-zinc-400 p-2 w-8 h-8 flex items-center justify-center rounded-full">
+        {'>'}
+        </button>
+
+        <div className="pointer-events-none absolute top-0 right-0 h-full w-40 bg-gradient-to-r from-transparent to-black/100" />
+        <div className="pointer-events-none absolute top-0 left-0 h-full w-3 bg-gradient-to-l from-transparent to-black/100" />
+      </div>  
+    </div>  
   )
 }
