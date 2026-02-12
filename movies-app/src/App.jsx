@@ -6,6 +6,10 @@ import Spinner from "./components/LoadingSpinner"
 function App() {
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [searchQuery, setSearchQuery] = useState("")
+  
+  const isSearching = searchQuery.trim().length > 0
+  const searchedMovies = isSearching ? movies.filter(movie => movie.title.toLowerCase().includes(searchQuery.toLowerCase())): movies
 
   const fetchMovies = async() => {
     try {
@@ -44,18 +48,31 @@ function App() {
   let url = 'url(https://i0.wp.com/bloody-disgusting.com/wp-content/uploads/2021/08/dune-poster-2-new.png?fit=1515%2C825&ssl=1)'
   return (
     <div className="min-h-screen flex flex-col bg-black font-rubik gap-10"> 
-      <MainHeroSection name={name} description={description} imageUrl={url}/>
+      <MainHeroSection name={name} description={description} imageUrl={url} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
 
       <main className="relative bg-black">
-        <div className="container mx-auto flex flex-col gap-10">
-          <MovieList movies={movies} category={'fantasy'}/>
-          <MovieList movies={movies} category={'action'}/>
-          <MovieList movies={movies} category={'drama'}/>
-          <MovieList movies={movies} category={'horror'}/>
-        </div>
+          {isSearching ? (
+            <>
+            <div className="container mx-auto flex flex-col">
+              <h2 className="text-white text-2xl font-medium px-2">
+                Search results for: “{searchQuery}”
+              </h2>
+              <MovieList movies={searchedMovies} />
+            </div>       
+            </>
+          ) : (
+            <>
+            <div className="container mx-auto flex flex-col gap-10">
+              <MovieList movies={movies} category="fantasy" />
+              <MovieList movies={movies} category="action" />
+              <MovieList movies={movies} category="drama" />
+              <MovieList movies={movies} category="horror" />
+            </div>
+            </>
+          )}
       </main>
 
-      <footer className="mt-10 bg-zinc-900">
+      <footer className="mt-10 bg-transparent">
         <p className="container mx-auto px-4 py-4 text-center text-white text-sm">Footer.</p>
       </footer>
     </div>

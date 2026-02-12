@@ -1,3 +1,5 @@
+import SearchBar from "./SearchBar"
+
 function MiddleHeaderButtons() {
   return (
     <div className="flex gap-8 items-center group">
@@ -16,23 +18,12 @@ function MiddleHeaderButtons() {
   )
 }
 
-export default function MainHeader({name, description, imageUrl}) {
+export default function MainHeader({searchQuery, setSearchQuery}) {
   return(
     <header className="relative flex items-center gap-8 p-10">
       <div className="flex-1" />
       <MiddleHeaderButtons></MiddleHeaderButtons>
-      <form id="searchBar" className="flex flex-1 justify-end">
-        <input
-          id="searchInput"
-          type="text"
-          placeholder=""
-          autoComplete="off"
-          className="text-gray-300 w-full max-w-52 font-rubik rounded-md border border-slate-200 bg-slate-50 shadow-lg outline-none transition
-                  focus:border-gray-400 focus:ring-1 focus:ring-gray-400 p-0.5 bg-opacity-20"
-        >
-        </input>
-        <button type="submit" hidden></button>
-      </form>
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
     </header>
   )
 }

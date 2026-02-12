@@ -20,8 +20,8 @@ export default function MovieList({movies, category}) {
     saveFavorites(updated)
   }
 
-  const categoryList = movies.filter(movie => movie.genre === category)
-  console.log(`${category} media: \n`, categoryList)
+  const categoryList = category ? movies.filter(movie => movie.genre === category): movies
+  console.log(`${category ?? "searched"} media: \n`, categoryList);
 
   if(categoryList.length == 0){
     return (

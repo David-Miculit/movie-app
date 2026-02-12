@@ -1,11 +1,11 @@
 import MainHeader from "./MainHeader"
 
-export default function MainHeroSection({name, description, imageUrl}) {
+export default function MainHeroSection({name, description, imageUrl, searchQuery, setSearchQuery}) {
   return(
     <section className="relative  bg-center" style={{backgroundImage: imageUrl}}>
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black" />
 
-      <MainHeader />
+      <MainHeader searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
 
       <section id="movieDescription" className="container mx-auto relative">
         <div className="px-2 pt-72 max-w-3xl">
