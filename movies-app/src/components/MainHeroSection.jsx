@@ -16,7 +16,7 @@ export default function MainHeroSection({name, description, imageUrl, searchQuer
           <p className="text-gray-300 text-lg line-clamp-3 mb-6">
             {description}
           </p>
-
+          
           <div className="flex gap-4">
             <button className="bg-white text-black px-6 py-2 rounded-md font-medium hover:bg-gray-200 transition">
               ▶ Play

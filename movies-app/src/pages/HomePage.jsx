@@ -1,9 +1,9 @@
-import MovieList from "../components/MoviesRender";
 import MainHeroSection from "../components/MainHeroSection";
 import { useEffect, useState } from "react";
 import Spinner from "../components/LoadingSpinner"
+import MoviesCarousel from "../components/MoviesCarousel";
 
-export default function Home() {
+export default function HomePage() {
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
@@ -57,16 +57,16 @@ export default function Home() {
               <h2 className="text-white text-2xl font-medium px-2">
                 Search results for: “{searchQuery}”
               </h2>
-              <MovieList movies={searchedMovies} />
+              <MoviesCarousel movies={searchedMovies} />
             </div>       
             </>
           ) : (
             <>
             <div className="container mx-auto flex flex-col gap-10">
-              <MovieList movies={movies} category="fantasy" />
-              <MovieList movies={movies} category="action" />
-              <MovieList movies={movies} category="drama" />
-              <MovieList movies={movies} category="horror" />
+              <MoviesCarousel movies={movies} category="fantasy" />
+              <MoviesCarousel movies={movies} category="action" />
+              <MoviesCarousel movies={movies} category="drama" />
+              <MoviesCarousel movies={movies} category="horror" />
             </div>
             </>
           )}
