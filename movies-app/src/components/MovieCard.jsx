@@ -1,5 +1,5 @@
 export function MovieCard({movie, favorites, toggleFavorite}) {
-    const isFavorite = favorites.includes(movie.id)
+    const isFavorite = favorites.some(favs => favs.id === movie.id)
     const star = isFavorite ? '★' : '☆'
 
     return (
@@ -11,7 +11,7 @@ export function MovieCard({movie, favorites, toggleFavorite}) {
             />
             <h3 className="mt-2 font-medium text-xl">{movie.title}</h3>
             <div className="container flex flex-row gap-2">
-                <button onClick={() => toggleFavorite(movie.id)} className="text-green-800 p-2 w-6 h-6 flex items-center justify-center rounded-full">
+                <button onClick={() => toggleFavorite(movie)} className="text-green-800 p-2 w-6 h-6 flex items-center justify-center rounded-full">
                     {star}
                 </button>
                 <p className="text-zinc-400">Genre: {movie.genre}</p>

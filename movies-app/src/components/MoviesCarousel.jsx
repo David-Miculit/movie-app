@@ -1,4 +1,6 @@
 import { MovieCard } from "./MovieCard"
+import { getFavorites, saveFavorites } from "../scripts/Favorites"
+import { useState, useRef } from "react"
 
 const scrollNext = (carouselRef) => {
   if (carouselRef.current) {
@@ -13,31 +15,52 @@ const scrollPrev = (carouselRef) => {
   }
 }
 
-export default function MoviesCarousel({movies, category, favorites, toggleFavorite, carouselRef}) {
+export default function MoviesCarousel({movies, category}) {
   const shownCategory = category ? category.charAt(0).toUpperCase() + category.slice(1): ''
+  const carouselRef = useRef(null)
+  const [favorites, setFavorites] = useState(() => getFavorites())
 
-  return (
-    <div>
-      <h2 className="text-white text-2xl font-medium mb-2 px-2">
-        {shownCategory}
-      </h2>
+  const toggleFavorite = (movie) => {
+    const exists = favorites.some(f => f.id === movie.id)
+    const updated = exists ? favorites.filter(f => f.id !== movie.id) : [...favorites, movie]
 
-      <div className="relative">
-        <div ref={carouselRef} className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
-          {movies.map(movie => (<MovieCard key={movie.id} movie={movie} favorites={favorites} toggleFavorite={toggleFavorite}/>))}
-        </div>
+    setFavorites(updated)
+    saveFavorites(updated)
+  }
 
-        <button onClick={() => scrollPrev(carouselRef)} className="absolute left-5 top-24 -translate-y-1/2 z-10 bg-zinc-900 text-zinc-400 p-2 w-8 h-8 flex items-center justify-center rounded-full">
-        {'<'}
-        </button>
+  const categoryList = category ? movies.filter(movie => movie.genre === category): movies
+  console.log(`${category ?? "searched/favorite"} media: \n`, categoryList);
 
-        <button onClick={() => scrollNext(carouselRef)} className="absolute right-5 top-24 -translate-y-1/2 z-10 bg-zinc-900 text-zinc-400 p-2 w-8 h-8 flex items-center justify-center rounded-full">
-        {'>'}
-        </button>
+  if(categoryList.length == 0){
+    return (
+      <div className="flex justify-center p-9">
+        <p className="text-white">No movies to show. Try again later</p>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <h2 className="text-white text-2xl font-medium mb-2 px-2">
+          {shownCategory}
+        </h2>
 
-        <div className="pointer-events-none absolute top-0 right-0 h-full w-40 bg-gradient-to-r from-transparent to-black/100" />
-        <div className="pointer-events-none absolute top-0 left-0 h-full w-3 bg-gradient-to-l from-transparent to-black/100" />
+        <div className="relative">
+          <div ref={carouselRef} className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
+            {categoryList.map(movie => (<MovieCard key={movie.id} movie={movie} favorites={favorites} toggleFavorite={toggleFavorite}/>))}
+          </div>
+
+          <button onClick={() => scrollPrev(carouselRef)} className="absolute left-5 top-24 -translate-y-1/2 z-10 bg-zinc-900 text-zinc-400 p-2 w-8 h-8 flex items-center justify-center rounded-full">
+          {'<'}
+          </button>
+
+          <button onClick={() => scrollNext(carouselRef)} className="absolute right-5 top-24 -translate-y-1/2 z-10 bg-zinc-900 text-zinc-400 p-2 w-8 h-8 flex items-center justify-center rounded-full">
+          {'>'}
+          </button>
+
+          <div className="pointer-events-none absolute top-0 right-0 h-full w-40 bg-gradient-to-r from-transparent to-black/100" />
+          <div className="pointer-events-none absolute top-0 left-0 h-full w-3 bg-gradient-to-l from-transparent to-black/100" />
+        </div>  
       </div>  
-    </div>  
-  )
+    )
+  }
 }
