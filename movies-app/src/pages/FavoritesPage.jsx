@@ -1,4 +1,3 @@
-import MainHeroSection from "../components/MainHeroSection";
 import { useEffect, useState } from "react";
 import Spinner from "../components/LoadingSpinner"
 import { getFavorites } from "../scripts/Favorites";
@@ -7,7 +6,6 @@ import MoviesCarousel from "../components/MoviesCarousel";
 
 export default function FavoritesPage() {
   const [favoriteMedia, setFavoriteMedia] = useState()
-  console.log(`favorite media:`, favoriteMedia)
   const [isLoading, setIsLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
   
@@ -18,7 +16,7 @@ export default function FavoritesPage() {
     setFavoriteMedia(getFavorites())
     setIsLoading(false)
   }, [])
-  
+    
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black">

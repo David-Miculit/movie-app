@@ -29,7 +29,7 @@ export default function MoviesCarousel({movies, category}) {
   }
 
   const categoryList = category ? movies.filter(movie => movie.genre === category): movies
-  console.log(`${category ?? "searched"} media: \n`, categoryList);
+  console.log(`${category ?? "searched/favorite"} media: \n`, categoryList);
 
   if(categoryList.length == 0){
     return (
@@ -46,7 +46,7 @@ export default function MoviesCarousel({movies, category}) {
 
         <div className="relative">
           <div ref={carouselRef} className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
-            {movies.map(movie => (<MovieCard key={movie.id} movie={movie} favorites={favorites} toggleFavorite={toggleFavorite}/>))}
+            {categoryList.map(movie => (<MovieCard key={movie.id} movie={movie} favorites={favorites} toggleFavorite={toggleFavorite}/>))}
           </div>
 
           <button onClick={() => scrollPrev(carouselRef)} className="absolute left-5 top-24 -translate-y-1/2 z-10 bg-zinc-900 text-zinc-400 p-2 w-8 h-8 flex items-center justify-center rounded-full">
