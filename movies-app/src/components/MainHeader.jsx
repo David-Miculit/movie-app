@@ -1,8 +1,9 @@
 import SearchBar from "./SearchBar"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 
 function MiddleHeaderButtons() {
   const navigate = useNavigate();
+  const location = useLocation()
 
   const items = [
     { label: "Watchlist", path: "/watchlist" },
@@ -12,18 +13,30 @@ function MiddleHeaderButtons() {
 
   return (
     <div className="flex gap-8 items-center group">
-      {items.map(({ label, path }) => (
-        <nav
-          key={label}
-          onClick={() => navigate(path)}
-          className="text-white cursor-pointer text-lg
-                     transition-all duration-200 ease-out
-                     group-hover:opacity-60 group-hover:scale-100
-                     hover:!opacity-100 hover:!scale-150"
-        >
-          {label}
-        </nav>
-      ))}
+      {items.map(({ label, path }) => {
+        const isActive = location.pathname === path
+
+        return (
+          <nav
+            key={label}
+            onClick={() => navigate(path)}
+            className={
+              `relative text-white cursor-pointer text-xl
+              transition-all duration-200 ease-out
+              group-hover:opacity-60 group-hover:scale-100
+              hover:!opacity-100 hover:!scale-150 
+
+              after:content-['']
+              after:absolute after:left-0 after:-bottom-1
+              after:h-[2px] after:bg-white
+              after:transition-all after:duration-300
+              ${isActive ? "after:w-full opacity-100" : "after:w-0"}`
+            }
+          >
+            {label}
+          </nav>
+        )
+      })}
     </div>
   )
 }
