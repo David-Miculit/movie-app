@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import Spinner from "../components/LoadingSpinner"
 import { getFavorites } from "../scripts/Favorites";
 import MainHeader from "../components/MainHeader";
-import MoviesCarousel from "../components/MoviesCarousel";
+import MovieList from "../components/MovieList";
+import Footer from "../components/Footer";
 
 export default function FavoritesPage() {
   const [favoriteMedia, setFavoriteMedia] = useState()
@@ -26,31 +27,32 @@ export default function FavoritesPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-black font-rubik gap-10"> 
+    <div className="min-h-screen flex flex-col bg-black/10 font-rubik gap-10"> 
       <MainHeader searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
 
-      <main className="relative bg-black">
+      <main className="relative bg-black flex-1">
           {isSearching ? (
             <>
             <div className="container mx-auto flex flex-col">
-              <h2 className="text-white text-2xl font-medium px-2">
+              <h2 className="text-white text-3xl font-medium px-2">
                 Search results for: “{searchQuery}”
               </h2>
-              <MoviesCarousel movies={searchedMovies} />
+              <MovieList movies={searchedMovies} />
             </div>       
             </>
           ) : (
             <>
-            <div className="container mx-auto flex flex-col gap-10">
-              <MoviesCarousel movies={favoriteMedia}/>
+            <div className="container mx-auto flex flex-col max-[500px]:justify-center">
+              <h2 className="text-white text-3xl font-medium px-2 max-[500px]:mx-auto">
+                Your liked stuff
+              </h2>
+              <MovieList movies={favoriteMedia}/>
             </div>
             </>
           )}
       </main>
 
-      <footer className="mt-10 bg-transparent">
-        <p className="container mx-auto px-4 py-4 text-center text-white text-sm">Footer.</p>
-      </footer>
+      <Footer/>
     </div>
   );
 }

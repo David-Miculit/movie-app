@@ -12,7 +12,7 @@ function MiddleHeaderButtons() {
   ]
 
   return (
-    <div className="flex gap-8 items-center group">
+    <div className="flex gap-6 items-center group">
       {items.map(({ label, path }) => {
         const isActive = location.pathname === path
 
@@ -24,7 +24,7 @@ function MiddleHeaderButtons() {
               `relative text-white cursor-pointer text-xl
               transition-all duration-200 ease-out
               group-hover:opacity-60 group-hover:scale-100
-              hover:!opacity-100 hover:!scale-150 
+              hover:!opacity-100 hover:!scale-125 max-[600px]:text-sm
 
               after:content-['']
               after:absolute after:left-0 after:-bottom-1

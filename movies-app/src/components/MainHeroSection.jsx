@@ -9,16 +9,16 @@ export default function MainHeroSection({name, description, imageUrl, searchQuer
 
       <section id="movieDescription" className="absolute bottom-16 left-0 right-0 container mx-auto px-2">
         <div className="px-2 pt-96 max-w-3xl max-h-3xl">
-          <h1 className="text-white text-6xl font-bold mb-4">
+          <h1 className="text-white text-6xl font-bold mb-4 max-[600px]:text-4xl">
             {name}
           </h1>
 
-          <p className="text-gray-300 text-xl line-clamp-3 mb-6">
+          <p className="text-gray-300 text-xl line-clamp-3 mb-6 max-[600px]:text-lg" >
             {description}
           </p>
           
           <div className="flex gap-4">
-            <button className="bg-white text-black px-20 py-4 rounded-md font-medium hover:bg-gray-200 transition">
+            <button className="bg-white text-black px-20 py-4 rounded-md font-medium hover:bg-gray-200 transition max-[600px]:px-14 max-[600px]:py-4">
               ▶ Play
             </button>
 

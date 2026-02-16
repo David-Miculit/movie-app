@@ -34,7 +34,7 @@ export default function MoviesCarousel({movies, category}) {
   if(categoryList.length == 0){
     return (
       <div className="flex justify-center p-9">
-        <p className="text-white">No movies to show. Try again later</p>
+        <p className="text-white">Nothing to show here. Try again later</p>
       </div>
     )
   } else {
@@ -45,7 +45,7 @@ export default function MoviesCarousel({movies, category}) {
         </h2>
 
         <div className="relative">
-          <div ref={carouselRef} className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
+          <div ref={carouselRef} className="flex gap-2 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
             {categoryList.map(movie => (<MovieCard key={movie.id} movie={movie} favorites={favorites} toggleFavorite={toggleFavorite}/>))}
           </div>
 

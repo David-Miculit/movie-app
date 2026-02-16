@@ -3,11 +3,11 @@ export function MovieCard({movie, favorites, toggleFavorite}) {
     const star = isFavorite ? '★' : '☆'
 
     return (
-        <div key={movie.id} className="text-white p-2 rounded-lg snap-start flex-none w-80 ">
+        <div key={movie.id} className="text-white p-2 rounded-lg snap-start flex-none w-80 cursor-pointer group">
             <img
                 src={`http://localhost:5000/images/${movie.image}`}
                 alt={movie.title}
-                className="h-44 border border-zinc-800 w-full object-cover rounded-lg"
+                className="h-44 border border-zinc-800 w-full object-cover rounded-lg ring-1 ring-transparent ring-offset-2 ring-offset-black group-hover:ring-white"
             />
             <h3 className="mt-2 font-medium text-xl">{movie.title}</h3>
             <div className="container flex flex-row gap-2">
