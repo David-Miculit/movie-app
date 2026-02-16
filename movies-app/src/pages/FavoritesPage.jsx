@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import Spinner from "../components/LoadingSpinner"
 import { getFavorites } from "../scripts/Favorites";
 import MainHeader from "../components/MainHeader";
-import MoviesCarousel from "../components/MoviesCarousel";
 import MovieList from "../components/MovieList";
+import Footer from "../components/Footer";
 
 export default function FavoritesPage() {
   const [favoriteMedia, setFavoriteMedia] = useState()
@@ -52,9 +52,7 @@ export default function FavoritesPage() {
           )}
       </main>
 
-      <footer className="mt-10 bottom- bg-transparent">
-        <p className="container mx-auto px-4 py-4 text-center text-white text-sm">Footer.</p>
-      </footer>
+      <Footer/>
     </div>
   );
 }

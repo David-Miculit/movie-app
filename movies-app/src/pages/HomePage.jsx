@@ -2,6 +2,7 @@ import MainHeroSection from "../components/MainHeroSection";
 import { useEffect, useState } from "react";
 import Spinner from "../components/LoadingSpinner"
 import MoviesCarousel from "../components/MoviesCarousel";
+import Footer from "../components/Footer";
 
 export default function HomePage() {
   const [movies, setMovies] = useState([])
@@ -72,9 +73,7 @@ export default function HomePage() {
           )}
       </main>
 
-      <footer className="mt-10 bg-transparent">
-        <p className="container mx-auto px-4 py-4 text-center text-white text-sm">Footer.</p>
-      </footer>
+      <Footer/>
     </div>
   );
 }
