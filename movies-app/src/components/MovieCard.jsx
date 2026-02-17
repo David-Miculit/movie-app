@@ -1,4 +1,3 @@
-import { Navigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 
 export function MovieCard({movie, favorites, toggleFavorite}) {
@@ -6,8 +5,8 @@ export function MovieCard({movie, favorites, toggleFavorite}) {
     const star = isFavorite ? '★' : '☆'
 
     return (
-        <div key={movie.id} onClick={() => <Navigate to={`/movies/${movie.id}`}></Navigate>} className="text-white p-2 rounded-lg snap-start flex-none w-80 ">
-            <Link to={`/movies/${movie.id}`} className="cursor-pointer group">
+        <div key={movie.id} className="text-white p-2 rounded-lg snap-start flex-none w-80 ">
+            <Link to={`/movies/${movie.id}`} state={{movie}} className="cursor-pointer group">
               <img
                   src={`http://localhost:5000/images/${movie.image}`}
                   alt={movie.title}
