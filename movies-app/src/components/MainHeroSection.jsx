@@ -1,11 +1,7 @@
-import MainHeader from "./MainHeader"
-
-export default function MainHeroSection({name, description, imageUrl, searchQuery, setSearchQuery}) {
+export default function MainHeroSection({name, description, imageUrl}) {
   return(
     <section className="relative h-screen bg-cover bg-center" style={{backgroundImage: imageUrl}}>
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black" />
-
-      <MainHeader searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
 
       <section id="movieDescription" className="absolute bottom-16 left-0 right-0 container mx-auto px-2">
         <div className="px-2 pt-96 max-w-3xl max-h-3xl">

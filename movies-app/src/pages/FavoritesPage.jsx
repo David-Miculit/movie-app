@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import Spinner from "../components/LoadingSpinner"
 import { getFavorites } from "../scripts/Favorites";
-import MainHeader from "../components/MainHeader";
 import MovieList from "../components/MovieList";
-import Footer from "../components/Footer";
+import { useOutletContext } from "react-router-dom";
 
 export default function FavoritesPage() {
   const [favoriteMedia, setFavoriteMedia] = useState()
   const [isLoading, setIsLoading] = useState(true)
-  const [searchQuery, setSearchQuery] = useState("")
+  const {searchQuery, setSearchQuery} = useOutletContext('')
   
   const isSearching = searchQuery.trim().length > 0
   const searchedMovies = isSearching ? favoriteMedia.filter(movie => movie.title.toLowerCase().includes(searchQuery.toLowerCase())): favoriteMedia
@@ -20,16 +19,14 @@ export default function FavoritesPage() {
     
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-black">
+      <div className="flex items-center justify-center bg-black">
         <Spinner />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-black/10 font-rubik gap-10"> 
-      <MainHeader searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-
+    <div className="flex flex-col bg-black/10 font-rubik gap-10"> 
       <main className="relative bg-black flex-1">
           {isSearching ? (
             <>
@@ -51,8 +48,6 @@ export default function FavoritesPage() {
             </>
           )}
       </main>
-
-      <Footer/>
     </div>
   );
 }
