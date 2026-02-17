@@ -14,6 +14,7 @@ function MiddleHeaderButtons() {
         <NavLink
           key={label}
           to={path}
+          end={path === "/"}
           className={({isActive}) =>
             `relative text-white cursor-pointer text-xl
             transition-all duration-200 ease-out
@@ -35,9 +36,9 @@ function MiddleHeaderButtons() {
   )
 }
 
-export default function MainHeader({searchQuery, setSearchQuery}) {
+export default function MainHeader({searchQuery, setSearchQuery, className=""}) {
   return(
-    <header className="relative flex items-center gap-8 p-10">
+    <header className={`flex items-center gap-8 p-10 ${className}`}>
       <div className="flex-1" />
       <MiddleHeaderButtons></MiddleHeaderButtons>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
