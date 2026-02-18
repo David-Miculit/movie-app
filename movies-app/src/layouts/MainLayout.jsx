@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import Spinner from "../components/LoadingSpinner";
 
 export default function MainLayout() {
-  const [searchQuery, setSearchQuery] = useState("")
   const isHome = useLocation().pathname=== "/"
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -40,7 +39,7 @@ export default function MainLayout() {
 
   return (
     <div id={'main-layout'} className="min-h-screen bg-black flex flex-col">
-        <MainHeader searchQuery={searchQuery} setSearchQuery={setSearchQuery} className={isHome ? "absolute top-0 left-0 w-full z-50": ""}/>
+        <MainHeader className={isHome ? "absolute top-0 left-0 w-full z-50": ""}/>
         <div className="flex-1">
           <Outlet context={movies}/>
         </div>

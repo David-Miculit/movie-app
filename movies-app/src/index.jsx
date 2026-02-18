@@ -7,6 +7,7 @@ import FavoritesPage from "./pages/FavoritesPage";
 import HomePage from "./pages/HomePage";
 import MoviePage from "./pages/MoviePage";
 import MainLayout from "./layouts/MainLayout";
+import SearchPage from "./pages/SearchPage"
 
 const entryPoint = document.getElementById("root");
 ReactDOM.createRoot(entryPoint).render(
@@ -16,6 +17,7 @@ ReactDOM.createRoot(entryPoint).render(
         <Route element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path="/liked-stuff" element={<FavoritesPage />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="/movies/:movieId" element={<MoviePage />} />
         </Route>
       </Routes>
