@@ -1,4 +1,4 @@
-import SearchBar from "./SearchBar"
+import SearchIcon from "./SearchIcon"
 import { NavLink } from "react-router-dom";
 
 function MiddleHeaderButtons() {
@@ -36,12 +36,12 @@ function MiddleHeaderButtons() {
   )
 }
 
-export default function MainHeader({searchQuery, setSearchQuery, className=""}) {
+export default function MainHeader({className=""}) {
   return(
     <header className={`flex items-center gap-8 p-10 ${className}`}>
       <div className="flex-1" />
       <MiddleHeaderButtons></MiddleHeaderButtons>
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+      <SearchIcon />
     </header>
   )
 }
