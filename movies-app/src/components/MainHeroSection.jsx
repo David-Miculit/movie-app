@@ -1,11 +1,11 @@
 export default function MainHeroSection({name, description, imageUrl}) {
   return(
-    <section className="relative h-screen bg-cover bg-center" style={{backgroundImage: imageUrl}}>
+    <section id={'heroSection'} className="h-screen bg-cover bg-center" style={{backgroundImage: imageUrl}}>
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black" />
 
-      <section id="movieDescription" className="absolute bottom-16 left-0 right-0 container mx-auto px-2">
-        <div className="px-2 pt-96 max-w-3xl max-h-3xl">
-          <h1 className="text-white text-6xl font-bold mb-4 max-[600px]:text-4xl">
+      <section id="movieDescription" className="absolute bottom-16 left-0 right-0 container mx-auto px-4">
+        <div className="pt-96 max-w-3xl max-h-3xl">
+          <h1 className="text-6xl font-bold mb-4 max-[600px]:text-4xl">
             {name}
           </h1>
 
@@ -18,13 +18,12 @@ export default function MainHeroSection({name, description, imageUrl}) {
               ▶ Play
             </button>
 
-            <button className="bg-green-800/80 text-white px-6 py-4 rounded-md font-medium hover:bg-green-800 transition">
+            <button className="bg-green-800/80 px-6 py-4 rounded-md font-medium hover:bg-green-800 transition">
               More Info
             </button>
           </div>
         </div>
       </section>
-
     </section>
   )
 }

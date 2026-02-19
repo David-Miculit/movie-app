@@ -16,10 +16,10 @@ function MiddleHeaderButtons() {
           to={path}
           end={path === "/"}
           className={({isActive}) =>
-            `relative text-white cursor-pointer text-xl
+            `relative cursor-pointer text-xl
             transition-all duration-200 ease-out
             group-hover:opacity-60 group-hover:scale-100
-            hover:!opacity-100 hover:!scale-125 max-[600px]:text-sm
+            hover:!opacity-100 hover:!scale-125
 
             after:content-['']
             after:absolute after:left-0 after:-bottom-1

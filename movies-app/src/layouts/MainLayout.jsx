@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import MainHeader from "../components/MainHeader";
 import Footer from "../components/Footer";
 import Spinner from "../components/LoadingSpinner";
+import { getFavorites } from "../scripts/Favorites";
 
 export default function MainLayout() {
   const isHome = useLocation().pathname=== "/"
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [favorites, setFavorites] = useState(() => getFavorites())
 
   const fetchMovies = async() => {
     try {
@@ -38,11 +40,11 @@ export default function MainLayout() {
   }
 
   return (
-    <div id={'main-layout'} className="min-h-screen bg-black flex flex-col">
-        <MainHeader className={isHome ? "absolute top-0 left-0 w-full z-50": ""}/>
-        <div className="flex-1">
-          <Outlet context={movies}/>
-        </div>
+    <div id={'main-layout'} className="min-h-screen flex flex-col text-white font-rubik">
+        <MainHeader className={isHome && movies.length!=0 ? "absolute w-full z-50": ""}/>
+        <main className="flex-1">
+          <Outlet context={{movies, favorites, setFavorites}}/>
+        </main>
         <Footer />
     </div>
   )
