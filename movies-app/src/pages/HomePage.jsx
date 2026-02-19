@@ -3,7 +3,7 @@ import MoviesCarousel from "../components/MoviesCarousel";
 import { useOutletContext } from "react-router-dom";
 
 export default function HomePage() {
-  const movies = useOutletContext()
+  const {movies} = useOutletContext()
 
   let name = 'Dune: Part Two'
   let description = "Paul Atreides unites with the Fremen while on a warpath of revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the universe, he endeavors to prevent a terrible future."
@@ -11,30 +11,24 @@ export default function HomePage() {
 
   if(movies.length!=0) {
     return (
-      <div className="flex flex-col bg-black font-rubik gap-10"> 
+      <> 
         <MainHeroSection name={name} description={description} imageUrl={url}/>
         
-        <main className="relative bg-black">
-          <div className="container mx-auto flex flex-col gap-10">
-            <MoviesCarousel movies={movies} category="fantasy" />
-            <MoviesCarousel movies={movies} category="action" />
-            <MoviesCarousel movies={movies} category="drama" />
-            <MoviesCarousel movies={movies} category="horror" />
-          </div>
-        </main>
-      </div>
+        <section className="p-2 container mx-auto flex flex-col gap-8">
+          <MoviesCarousel movies={movies} category="fantasy" />
+          <MoviesCarousel movies={movies} category="action" />
+          <MoviesCarousel movies={movies} category="drama" />
+          <MoviesCarousel movies={movies} category="horror" />
+        </section>
+      </>
     );  
     } else {
         return(
-          <div className="flex flex-col bg-black font-rubik gap-10"> 
-            <MainHeroSection name={name} description={description} imageUrl={url}/>
-            
-            <main className="relative bg-black">
-              <div className="container mx-auto flex flex-col gap-10">
-                <p className="text-white text-xl mx-auto">No movies were found. Try again later :(</p>
-              </div>
-            </main>
-          </div>
-        );      
+        <section className="text-center">
+          <h2 className="text-2xl font-medium">
+            Nothing to show here for now. Try again later
+          </h2>
+        </section>
+        );
     }
 }

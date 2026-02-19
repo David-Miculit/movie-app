@@ -1,6 +1,5 @@
 import { MovieCard } from "./MovieCard"
-import { getFavorites, saveFavorites } from "../scripts/Favorites"
-import { useState, useRef } from "react"
+import { useRef } from "react"
 
 const scrollNext = (carouselRef) => {
   if (carouselRef.current) {
@@ -18,15 +17,6 @@ const scrollPrev = (carouselRef) => {
 export default function MoviesCarousel({movies, category}) {
   const shownCategory = category ? category.charAt(0).toUpperCase() + category.slice(1): ''
   const carouselRef = useRef(null)
-  const [favorites, setFavorites] = useState(() => getFavorites())
-
-  const toggleFavorite = (movie) => {
-    const exists = favorites.some(f => f.id === movie.id)
-    const updated = exists ? favorites.filter(f => f.id !== movie.id) : [...favorites, movie]
-
-    setFavorites(updated)
-    saveFavorites(updated)
-  }
 
   const categoryList = category ? movies.filter(movie => movie.genre === category): movies
   console.log(`${category ?? "searched/favorite"} media: \n`, categoryList);
@@ -34,19 +24,19 @@ export default function MoviesCarousel({movies, category}) {
   if(categoryList.length == 0){
     return (
       <div className="flex justify-center p-9">
-        <p className="text-white">Nothing to show here. Try again later</p>
+        <p >Nothing to show here. Try again later</p>
       </div>
     )
   } else {
     return (
-      <div>
-        <h2 className="text-white text-2xl font-medium mb-2 px-2">
+      <div className="movieCarousel">
+        <h2 className="text-2xl font-medium px-2">
           {shownCategory}
         </h2>
 
         <div className="relative">
           <div ref={carouselRef} className="flex gap-2 overflow-x-auto scrollbar-hide snap-x snap-mandatory">
-            {categoryList.map(movie => (<MovieCard key={movie.id} movie={movie} favorites={favorites} toggleFavorite={toggleFavorite}/>))}
+            {categoryList.map(movie => (<MovieCard key={movie.id} movie={movie} />))}
           </div>
 
           <button onClick={() => scrollPrev(carouselRef)} className="absolute left-5 top-24 -translate-y-1/2 z-10 bg-zinc-900 text-zinc-400 p-2 w-8 h-8 flex items-center justify-center rounded-full">

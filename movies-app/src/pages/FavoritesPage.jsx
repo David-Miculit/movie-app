@@ -14,22 +14,28 @@ export default function FavoritesPage() {
     
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center bg-black">
+      <div className="flex items-center justify-center">
         <Spinner />
       </div>
     )
   }
 
-  return (
-    <div className="flex flex-col bg-black/10 font-rubik gap-10"> 
-      <main className="relative bg-black flex-1">
-        <div className="container mx-auto flex flex-col max-[500px]:justify-center">
-          <h2 className="text-white text-3xl font-medium px-2 max-[500px]:mx-auto">
-            Your liked stuff
+  if(favoriteMedia!=0) {
+    return (
+      <section className="container mx-auto flex flex-col">
+        <h2 className="text-2xl font-medium max-[800px]:mx-auto">
+          Your liked stuff
+        </h2>
+        <MovieList movies={favoriteMedia}/>
+      </section>
+    );
+  } else {
+      return (
+        <section className="text-center">
+          <h2 className="text-2xl font-medium">
+            Nothing to display here for now. Go add the things you like
           </h2>
-          <MovieList movies={favoriteMedia}/>
-        </div>
-      </main>
-    </div>
-  );
+        </section>
+      );
+  }
 }

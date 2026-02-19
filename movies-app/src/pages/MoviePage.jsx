@@ -7,10 +7,10 @@ export default function MoviePage() {
 
   return (
     <div>
-      <h1 className="text-white text-xl">Movie id: {movieId}</h1>
-      <h1 className="text-white text-xl">Movie title: {passedMovie.title}</h1>
-      <h1 className="text-white text-xl">Movie genre: {passedMovie.genre}</h1>
-      <h1 className="text-white text-xl">Movie rating: {passedMovie.rating}</h1>
+      <h1 className="text-xl">Movie id: {movieId}</h1>
+      <h1 className="text-xl">Movie title: {passedMovie.title}</h1>
+      <h1 className="text-xl">Movie genre: {passedMovie.genre}</h1>
+      <h1 className="text-xl">Movie rating: {passedMovie.rating}</h1>
     </div>
   )
 }
