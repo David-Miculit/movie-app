@@ -1,12 +1,12 @@
 import { useOutletContext } from "react-router-dom"
 import MovieList from "../components/MovieList"
 import { useSearchParams } from "react-router-dom";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useRef } from "react";
 
 export default function SearchPage() {
   const {movies} = useOutletContext()
   const [searchParams, setSearchParams] = useSearchParams()
-  const [inputValue, setInputValue] = useState("")
+  const inputRef = useRef(null)
 
   const search = searchParams.get("search") ?? ""
 
@@ -14,22 +14,15 @@ export default function SearchPage() {
     const lowercaseSearch = search.trim().toLowerCase()
     
     const filtered = lowercaseSearch.length ? movies.filter((movie) => movie.title?.toLowerCase().includes(lowercaseSearch)): movies
-
+    console.log(`Searched movies: \n`, filtered)
     return filtered
   }, [movies, search])
 
-  useEffect(() => {setInputValue(search)}, [search])
-
   const onSubmit = (e) => {
     e.preventDefault()
-    const input = inputValue.trim()
+    const input = inputRef.current.value.trim();
 
-    const params = {}
-    if (input)
-    {
-      params.search = input
-    }
-    setSearchParams(params, { replace: true })
+    setSearchParams(input ? { search: input } : {}, { replace: true })
   }
 
   return (
@@ -43,8 +36,7 @@ export default function SearchPage() {
             type="text"
             placeholder="Search by title..."
             autoComplete="off"
-            value={inputValue}
-            onChange={e => setInputValue(e.target.value)}
+            ref={inputRef}
             className="w-full px-4 py-3 rounded-lg bg-white/10 outline-none focus:ring-2 focus:ring-white/30"
           >
           </input>
