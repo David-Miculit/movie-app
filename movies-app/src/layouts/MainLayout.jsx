@@ -9,7 +9,6 @@ export default function MainLayout() {
   const isHome = useLocation().pathname=== "/"
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [favorites, setFavorites] = useState(() => getFavorites())
 
   const fetchMovies = async() => {
     try {
@@ -43,7 +42,7 @@ export default function MainLayout() {
     <div id={'main-layout'} className="min-h-screen flex flex-col text-white font-rubik">
         <MainHeader className={isHome && movies.length!=0 ? "absolute w-full z-50": ""}/>
         <main className="flex-1">
-          <Outlet context={{movies, favorites, setFavorites}}/>
+          <Outlet context={{movies}}/>
         </main>
         <Footer />
     </div>
