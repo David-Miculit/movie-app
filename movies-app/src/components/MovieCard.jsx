@@ -1,17 +1,22 @@
 import { Link } from "react-router-dom"
 import { saveFavorites } from "../scripts/Favorites"
-import { useOutletContext } from "react-router-dom"
+import { getFavorites } from "../scripts/Favorites"
+import { useState } from "react"
 
 export function MovieCard({movie}) {
-    const {favorites, setFavorites} = useOutletContext()
-    const isFavorite = favorites.some(favs => favs.id === movie.id)
-    const star = isFavorite ? '★' : '☆'
+    const [isFavorite, setIsFavorite] = useState(getFavorites().some(favs => favs.id === movie.id))
+    const [star, setStar] = useState(isFavorite ? '★' : '☆')
 
     const toggleFavorite = (movie) => {
+        const favorites = getFavorites()
         const exists = favorites.some(f => f.id === movie.id)
         const updated = exists ? favorites.filter(f => f.id !== movie.id) : [...favorites, movie]
-        
-        setFavorites(updated)
+
+        setIsFavorite((previous) => {
+            const newValue = !previous
+            setStar(newValue ? '★' : '☆')
+            return newValue
+        })
         saveFavorites(updated)
     }
 
