@@ -5,18 +5,13 @@ import { useState } from "react"
 
 export function MovieCard({movie}) {
     const [isFavorite, setIsFavorite] = useState(getFavorites().some(favs => favs.id === movie.id))
-    const [star, setStar] = useState(isFavorite ? '★' : '☆')
 
     const toggleFavorite = (movie) => {
         const favorites = getFavorites()
         const exists = favorites.some(f => f.id === movie.id)
         const updated = exists ? favorites.filter(f => f.id !== movie.id) : [...favorites, movie]
 
-        setIsFavorite((previous) => {
-            const newValue = !previous
-            setStar(newValue ? '★' : '☆')
-            return newValue
-        })
+        setIsFavorite((current) => !current)
         saveFavorites(updated)
     }
 
@@ -32,7 +27,7 @@ export function MovieCard({movie}) {
             </Link>
             <div className="container flex flex-row gap-2">
                 <button onClick={() => toggleFavorite(movie)} className="text-green-800 p-2 w-6 h-6 flex items-center justify-center">
-                    {star}
+                    {isFavorite ? '★' : '☆'}
                 </button>
                 <p className="text-zinc-400">Genre: {movie.genre}</p>
                 <p className="text-zinc-400">•</p>

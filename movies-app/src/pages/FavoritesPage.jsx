@@ -21,6 +21,7 @@ export default function FavoritesPage() {
   }
 
   if(favoriteMedia!=0) {
+    console.log(`Favorite movies: \n`,favoriteMedia)
     return (
       <section className="container mx-auto flex flex-col">
         <h2 className="text-2xl font-medium max-[800px]:mx-auto">

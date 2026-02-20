@@ -19,7 +19,7 @@ export default function MoviesCarousel({movies, category}) {
   const carouselRef = useRef(null)
 
   const categoryList = category ? movies.filter(movie => movie.genre === category): movies
-  console.log(`${category ?? "searched/favorite"} media: \n`, categoryList);
+  console.log(`${category} movies: \n`, categoryList);
 
   if(categoryList.length == 0){
     return (
